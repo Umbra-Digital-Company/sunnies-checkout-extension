@@ -7,7 +7,7 @@ export default function SunniesGuarantee() {
   return (
     <s-box border="base" padding="base" borderRadius="base">
       <s-stack direction="block" gap="base">
-        <s-image src={GUARANTEE_IMAGE} alt="Sunnies Guarantee" />
+        <s-image src={GUARANTEE_IMAGE} alt="Sunnies Guarantee" inlineSize="auto" />
         <s-heading>Sunnies Guarantee</s-heading>
         <s-paragraph>
           We hope you are happy with your purchase. If not, your Sunnies Flask
