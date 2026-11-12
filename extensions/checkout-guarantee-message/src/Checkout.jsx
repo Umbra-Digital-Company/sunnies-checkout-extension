@@ -1,56 +1,44 @@
-// import { Link } from '@remix-run/react';
-import {
-  reactExtension as checkoutReactExtension,
-  BlockLayout,
-  View,
-  Link,
-  Text,
-  Image,
-  useApi,
-  List,
-  ListItem,  
-  Button,
-  Modal,
-  TextBlock,
-  Sheet
-} from '@shopify/ui-extensions-react/checkout';
- 
-import React from 'react';
+import '@shopify/ui-extensions/preact';
+import {render} from 'preact';
 
 import EyewearGuarantee from './components/EyewearGuarantee';
 import BothGuarantee from './components/BothGuarantee';
 import FlaskGuarantee from './components/FlaskGuarantee';
 
-export default checkoutReactExtension("purchase.thank-you.block.render", () => <Guarantee />);
- 
-let value = 1;
+export default function extension() {
+  render(<Guarantee />, document.body);
+}
+
 function Guarantee() {
-  const cartObject = useApi();
-  
-  const {ui} = useApi();
-  const lineCurrent = cartObject.lines.current;
+  const lines = shopify.lines.value ?? [];
   let flaskCount = 0;
   let eyewearCount = 0;
-  lineCurrent.forEach(attributes => {
-    attributes.attributes.forEach(key => {
-      console.log(key.key, key.value);
-      if(key.key.includes("item_type") && key.value.includes('flask')){
-        flaskCount++;
-      } else if(key.key.includes("item_type") && !key.value.includes('flask')) {
-        eyewearCount++;
-      } 
-    }); 
-  });   
-  return (
-    <View border="base" padding="base">
-      {
-      (flaskCount > 0 && eyewearCount === 0) ? 
-        <FlaskGuarantee /> :
-      (flaskCount > 0 && eyewearCount > 0) ? 
-        <BothGuarantee /> :
-      (flaskCount === 0 && eyewearCount > 0) ? 
-        <EyewearGuarantee /> : <EyewearGuarantee />
+
+  for (const line of lines) {
+    for (const attribute of line.attributes ?? []) {
+      const key = attribute?.key ?? '';
+      const value = attribute?.value ?? '';
+      if (!key.includes('item_type')) continue;
+      if (value.includes('flask')) {
+        flaskCount += 1;
+      } else {
+        eyewearCount += 1;
       }
-    </View>
+    }
+  }
+
+  const message =
+    flaskCount > 0 && eyewearCount === 0 ? (
+      <FlaskGuarantee />
+    ) : flaskCount > 0 && eyewearCount > 0 ? (
+      <BothGuarantee />
+    ) : (
+      <EyewearGuarantee />
+    );
+
+  return (
+    <s-box border="base" padding="base" borderRadius="base">
+      {message}
+    </s-box>
   );
 }
