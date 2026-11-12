@@ -21,8 +21,7 @@ import EyewearGuarantee from './components/EyewearGuarantee';
 import BothGuarantee from './components/BothGuarantee';
 import FlaskGuarantee from './components/FlaskGuarantee';
 
-const guaranteeBlock = checkoutReactExtension("purchase.thank-you.block.render", () => <Guarantee />);
-export { guaranteeBlock };
+export default checkoutReactExtension("purchase.thank-you.block.render", () => <Guarantee />);
  
 let value = 1;
 function Guarantee() {

@@ -1,4 +1,4 @@
-api_version = "2023-10"
+api_version = "2026-10"
 
 [capabilities]
 api_access = true
@@ -13,7 +13,6 @@ uid = "6f19f81a-f1ad-cb12-a0bd-afa68fe7cd73ad8cac48"
 [[extensions.targeting]]
 target = "purchase.thank-you.block.render"
 module = "./src/Checkout.jsx"
-export = "guaranteeBlock"
 
 [extensions.capabilities.collect_buyer_consent]
 sms_marketing = true
