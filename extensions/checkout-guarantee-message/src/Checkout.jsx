@@ -1,3 +1,4 @@
+/** @jsxImportSource preact */
 import '@shopify/ui-extensions/preact';
 import {render} from 'preact';
 
@@ -10,7 +11,7 @@ export default function extension() {
 }
 
 function Guarantee() {
-  const lines = shopify.lines.value ?? [];
+  const lines = shopify.lines?.value ?? [];
   let flaskCount = 0;
   let eyewearCount = 0;
 
