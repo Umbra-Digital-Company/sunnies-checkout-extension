@@ -9,6 +9,7 @@ block_progress = true
 type = "ui_extension"
 name = "Guarantee Message"
 handle = "guarantee-message"
+uid = "6f19f81a-f1ad-cb12-a0bd-afa68fe7cd73ad8cac48"
 [[extensions.targeting]]
 target = "purchase.thank-you.block.render"
 module = "./src/Checkout.jsx"

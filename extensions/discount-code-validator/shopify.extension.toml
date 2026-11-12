@@ -8,6 +8,7 @@ api_version = "2024-07"
 [[extensions]]
 name = "discount-code-validator"
 handle = "discount-code-validator"
+uid = "d81aa5a4-6cd9-9132-8785-93374e2029a5589a2a94"
 type = "ui_extension"
 
 
